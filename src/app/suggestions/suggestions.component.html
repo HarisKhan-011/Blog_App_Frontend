@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h3>Suggestions</h3>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link" [class.active]="activeTab==='received'" (click)="activeTab='received'">Received</a></li>
+    <li class="nav-item"><a class="nav-link" [class.active]="activeTab==='sent'" (click)="activeTab='sent'">Sent</a></li>
+  </ul>
+
+  <div class="tab-content mt-3">
+    <div *ngIf="activeTab === 'received'">
+      <p *ngIf="!loading && received.length === 0">No suggestions received.</p>
+
+      <div *ngFor="let s of received" class="card mb-2">
+        <div class="card-body">
+          <h6>Post ID: <a [routerLink]="['/post', s.postId]">{{ s.postId }}</a> — From: {{ s.authorEmail }}</h6>
+          <p>{{ s.suggestionText }}</p>
+          <p><small>{{ s.suggestionDate | date:'short' }} • Status: {{ s.status }}</small></p>
+
+          <div *ngIf="s.status === 'Pending'">
+            <button class="btn btn-sm btn-success me-2" (click)="accept(s)">Accept</button>
+            <button class="btn btn-sm btn-danger me-2" (click)="reject(s)">Reject</button>
+          </div>
+
+          <button class="btn btn-sm btn-outline-secondary" (click)="startReply(s.suggestionId)">Reply</button>
+
+          <div *ngIf="replyingToId === s.suggestionId" class="mt-2">
+            <textarea class="form-control mb-2" rows="3" [(ngModel)]="replyText" placeholder="Write reply..."></textarea>
+            <button class="btn btn-primary btn-sm me-2" (click)="submitReply()">Send</button>
+            <button class="btn btn-secondary btn-sm" (click)="cancelReply()">Cancel</button>
+          </div>
+
+          <div *ngIf="s.replies?.length" class="mt-2">
+            <hr />
+            <div *ngFor="let r of s.replies">
+              <p class="mb-1"><strong>{{ r.authorEmail }}</strong> - {{ r.suggestionText }} <small>({{ r.suggestionDate | date:'short' }})</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="activeTab === 'sent'">
+      <p *ngIf="sent.length === 0">You haven't sent any suggestions yet.</p>
+      <div *ngFor="let s of sent" class="card mb-2">
+        <div class="card-body">
+          <h6>On Post ID: <a [routerLink]="['/post', s.postId]">{{ s.postId }}</a></h6>
+          <p>{{ s.suggestionText }}</p>
+          <p><small>Status: {{ s.status }} • {{ s.suggestionDate | date:'short' }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

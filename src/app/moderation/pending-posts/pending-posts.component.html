@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>🕓 Pending Posts</h2>
+
+  <div *ngIf="loading" class="text-center mt-4">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <div *ngIf="!loading && pendingPosts.length === 0" class="alert alert-info">
+    No pending posts found.
+  </div>
+
+  <div *ngFor="let post of pendingPosts" class="card mt-3 shadow-sm">
+    <div class="card-body">
+      <h5>{{ post.postTitle }}</h5>
+      <p>{{ post.postContent | slice:0:150 }}...</p>
+      <p class="text-muted">
+        <b>Author:</b> {{ post.authorEmail }} |
+        <b>Date:</b> {{ post.createdate | date:'medium' }}
+      </p>
+
+      <button class="btn btn-success me-2" (click)="approvePost(post.id)">Approve</button>
+      <button class="btn btn-danger" (click)="unpublishPost(post.id)">Reject</button>
+    </div>
+  </div>
+</div>

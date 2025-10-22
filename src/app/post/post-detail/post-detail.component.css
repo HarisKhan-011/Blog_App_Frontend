@@ -1,0 +1,292 @@
+.post-detail {
+  width: 100%;
+  margin: 20px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail h1 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.post-detail p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.post-content {
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.attachments ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.attachments a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.attachments a:hover {
+  text-decoration: underline;
+}
+
+/* Like Button */
+.likes button {
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.likes button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Comment Section */
+.comments {
+  margin-top: 20px;
+}
+
+.comments div {
+  background: #f7f7f7;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.comments strong {
+  color: #333;
+}
+
+.comments small {
+  display: block;
+  color: #777;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Add Comment */
+.add-comment {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.add-comment input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-comment button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-comment button:hover {
+  background-color: #218838;
+}
+/* .report { margin-top: 12px; }
+.report-box { margin-top: 8px; background:#f0f7ff; padding:10px; border-radius:6px; }
+.report-actions { margin-top:8px; display:flex; gap:8px; }
+.report-message { margin-top:8px; color:#155724; background:#d4edda; padding:8px; border-radius:4px; } */
+/* Report Button */
+.report-btn {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.report-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.report-btn:hover:not(:disabled) {
+  background-color: #d32f2f;
+}
+
+/* Report Box */
+.report-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: auto;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-box h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Dropdown and Textarea */
+.report-box select,
+.report-box textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.report-box textarea {
+  min-height: 80px;
+}
+
+/* Buttons inside report box */
+.report-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.report-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.report-actions button:first-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.report-actions button:first-child:hover {
+  background-color: #3d8b40;
+}
+
+.report-actions button:last-child {
+  background-color: gray;
+  color: white;
+}
+
+.report-actions button:last-child:hover {
+  background-color: #555;
+}
+/* Comments Section Container */
+.comments-section {
+  margin-top: 30px;
+  padding: 15px;
+  border-top: 2px solid #ddd;
+}
+
+/* Single Comment Box */
+.comment-box {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-left: 4px solid #007bff;
+}
+
+/* Author + Date */
+.comment-box p {
+  margin: 5px 0;
+}
+
+.comment-box strong {
+  color: #007bff;
+}
+
+/* Load More Button */
+.comments-section button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.comments-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Add Comment Box */
+.add-comment {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-comment input {
+  flex: 1;
+  padding: 8px;
+}
+
+.add-comment button {
+  background-color: green;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.comment-actions button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 10px;
+  color:  black;
+}
+.comment-actions textarea{
+   width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 8px;
+}
+.comment-actions button:hover {
+  text-decoration: underline;
+}
+.suggestion-box {
+  background: #f8f9fa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.suggestion-box textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.suggestion-actions button {
+  margin-right: 10px;
+}

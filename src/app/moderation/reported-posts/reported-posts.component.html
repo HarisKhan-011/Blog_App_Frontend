@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>🚨 Reported Posts</h2>
+
+  <div *ngIf="loading" class="text-center mt-4">
+    <div class="spinner-border text-danger"></div>
+  </div>
+
+  <div *ngIf="!loading && reportedPosts.length === 0" class="alert alert-info">
+    No reported posts found.
+  </div>
+
+  <div *ngFor="let post of reportedPosts" class="card mt-3 shadow-sm">
+    <div class="card-body">
+      <h5>{{ post.postTitle }}</h5>
+      <p>{{ post.postContent | slice:0:150 }}...</p>
+      <p class="text-muted">
+        <b>Reported by:</b> users |
+        <b>Date:</b> {{ post.createdate | date:'medium' }}
+      </p>
+
+      <button class="btn btn-danger me-2" (click)="deletePost(post.postId)">Delete</button>
+      <button class="btn btn-secondary" (click)="resolveReport(post.reportId, 'ignore')">Ignore</button>
+    </div>
+  </div>
+</div>

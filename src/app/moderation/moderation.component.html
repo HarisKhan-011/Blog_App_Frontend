@@ -1,0 +1,33 @@
+<div class="container">
+  <h3>Moderator Dashboard</h3>
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><a (click)="tab='pending'" [class.active]="tab=='pending'" class="nav-link">Pending Approval</a></li>
+    <li class="nav-item"><a (click)="tab='reported'" [class.active]="tab=='reported'" class="nav-link">Reported Posts</a></li>
+  </ul>
+
+  <div *ngIf="tab==='pending'" class="mt-3">
+    <div *ngIf="pending.length===0">No pending posts</div>
+    <div *ngFor="let p of pending" class="card mb-2">
+      <div class="card-body">
+        <h5>{{p.postTitle}} <small>by {{p.authorEmail}}</small></h5>
+        <p>{{p.postContent | slice:0:300}}...</p>
+        <button class="btn btn-success btn-sm" (click)="approve(p.id)">Approve</button>
+        <button class="btn btn-warning btn-sm" (click)="unpublish(p.id)">Unpublish</button>
+        <button class="btn btn-danger btn-sm" (click)="delete(p.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="tab==='reported'" class="mt-3">
+    <div *ngIf="reported.length===0">No reports</div>
+    <div *ngFor="let r of reported" class="card mb-2">
+      <div class="card-body">
+        <h6>Post: {{r.post.postTitle}} <small>by {{r.post.authorEmail}}</small></h6>
+        <p>Report reason: {{r.reason}} — {{r.details}}</p>
+        <button class="btn btn-warning btn-sm" (click)="unpublish(r.postId)">Unpublish</button>
+        <button class="btn btn-danger btn-sm" (click)="delete(r.postId)">Delete</button>
+        <button class="btn btn-primary btn-sm" (click)="resolveReport(r.postReportId, 'none')">Resolve (no action)</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+  <div *ngIf="loading">Loading post...</div>
+
+<div *ngIf="!loading" class="post-detail">
+  <!-- Title -->
+  <h1>{{ post.postTitle }}</h1>
+  <p><b>Category:</b> {{ post.postCategory }}</p>
+  <p>
+    <b>Posted by:</b> {{ post.authorEmail }} on
+    {{ post.createdate | date: 'medium' }}
+  </p>
+
+  <!-- Content -->
+  <div class="post-content">
+    <p>{{ post.postContent }}</p>
+  </div>
+
+  <!-- Likes and Report -->
+  <div class="likes">
+    <button (click)="likePost()" [disabled]="!isLoggedIn">
+      {{ userLiked ? "Unlike" : "👍 Like" }} {{ likesCount }}
+    </button>
+
+    <div class="likes">
+    <button (click)="openReport()" [disabled]="!isLoggedIn" class="report-btn">
+      🚩 Report
+    </button>
+  </div>
+  <!--suggestion--> 
+  <div class="mt-2">
+  <button class="btn btn-outline-primary" (click)="openSuggestionBox()" [disabled]="!isLoggedIn">💡 Suggest Edit</button>
+</div>
+
+<!-- Suggestion Box -->
+<div *ngIf="showSuggestionBox" class="suggestion-box mt-2">
+  <textarea class="form-control mb-2" rows="5" [(ngModel)]="suggestionText" placeholder="Write your suggestion..."></textarea>
+  <button class="btn btn-success me-2" (click)="submitSuggestion()">Submit</button>
+  <button class="btn btn-secondary" (click)="cancelSuggestion()">Cancel</button>
+</div>
+
+ 
+
+  <!-- ✅ Report Box -->
+  <div *ngIf="showReportBox" class="report-box">
+    <h4>Report this post</h4>
+    <select  [(ngModel)]="reportReason">
+      <option  value="">Select reason</option>
+      <option *ngFor="let r of reportReasons" [value]="r">{{ r }}</option>
+    </select>
+
+    <textarea
+      *ngIf="reportReason === 'Other'"
+      [(ngModel)]="reportDetails"
+      placeholder="Describe your reason..."
+    ></textarea>
+
+    <div class="report-actions">
+      <button (click)="submitReport()" [disabled]="!reportReason">Submit</button>
+   <button  (click)="cancelReport()">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="reportMessage" class="report-message">
+    {{ reportMessage }}
+  </div>
+
+ <div class="comments-section">
+  <h3>Comments ({{ totalComments }})</h3>
+
+  <div class="add-comment" *ngIf="isLoggedIn">
+    <input type="text" [(ngModel)]="newComment" placeholder="Write a comment..." />
+    <button (click)="addComment()">Post</button>
+  </div>
+
+  <p *ngIf="comments.length === 0">No comments yet.</p>
+
+  <div *ngFor="let comment of comments" class="comment-box">
+    <p><strong>{{ comment.authorEmail }}</strong> • {{ comment.commentDate | date:'short' }}</p>
+    <p>{{ comment.commentText }}</p>
+
+   <div class="comment-actions">
+    <!-- Edit button only for owner -->
+    <button *ngIf="comment.authorEmail === userEmail" (click)="editComment(comment)">Edit</button>
+    <button *ngIf="isLoggedIn" (click)="toggleCommentLike(comment)">
+  {{ comment.isLikedByUser ? 'Unlike' : 'Like' }} ({{ comment.likesCount || 0 }})
+</button>
+
+    <button *ngIf="isLoggedIn" (click)="replyingCommentId = comment.commentId">Reply</button>
+  </div>
+  <!-- ✅ Reply box -->
+
+<div *ngIf="replyingCommentId === comment.commentId" class="comment-actions">
+  <textarea [(ngModel)]="replyText" placeholder="Write a reply..."></textarea>
+  <button (click)="submitReply(comment.commentId)">Submit</button>
+  <button (click)="cancelReply()">Cancel</button>
+</div>
+ <div class="replies" *ngFor="let reply of comment.replies">
+      <p><strong>{{ reply.authorEmail }}</strong> • {{ reply.commentDate | date:'short' }}</p>
+      <p>{{ reply.commentText }}</p>
+    </div>
+  </div>
+  <!-- Show suggestions under post (optional) -->
+<div *ngIf="suggestions?.length">
+  <h5 class="mt-3">Suggestions</h5>
+  <div *ngFor="let s of suggestions" class="border p-2 mb-2">
+    <p>{{ s.suggestionText }}</p>
+    <small>{{ s.authorEmail }} • {{ s.suggestionDate | date:'short' }} • {{ s.status }}</small>
+  </div>
+</div>
+  <button *ngIf="comments.length < totalComments" (click)="loadMoreComments()">
+    Load More
+  </button>
+</div>

@@ -1,0 +1,117 @@
+/* === Card Styling === */
+
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+}
+
+.card-header {
+  border-bottom: 2px solid #0d6efd;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.card-body {
+  background-color: #ffffff;
+  padding: 30px;
+}
+
+/* === Form Elements === */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
+/* === Quill Editor Styling === */
+quill-editor {
+  display: block;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ql-toolbar {
+  border: none !important;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6 !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.ql-container {
+  border: none !important;
+  min-height: 200px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.ql-editor {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #212529;
+  padding: 12px 14px;
+}
+
+/* === File Input === */
+input[type="file"] {
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+/* === Buttons === */
+button.btn {
+  min-width: 120px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 576px) {
+  .card-body {
+    padding: 20px;
+  }
+
+  button.btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .d-flex.justify-content-end {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input[type="file"] {
+    margin-bottom: 10px;
+  }
+}

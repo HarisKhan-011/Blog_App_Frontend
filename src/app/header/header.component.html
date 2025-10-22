@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="">Navbar</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="postpage">Post page</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="suggestions">Suggestion</a>
+      </li>
+
+ <li *ngIf="isLoggedIn() && isAdmin()">
+  <a class="nav-link" routerLink="admindashboard">Admin dashboard</a>
+</li>
+
+     <li class="nav-item dropdown" *ngIf="isLoggedIn() && isModerator() || isAdmin()">
+  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+    Moderator
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" routerLink="/moderation/pending-posts">Pending Posts</a></li>
+    <li><a class="dropdown-item" routerLink="/moderation/reported-posts">Reported Posts</a></li>
+  </ul>
+</li>
+
+    </ul>
+
+    <div class="d-flex">
+      <button *ngIf="!isLoggedIn()" class="btn btn-outline-primary me-2" routerLink="/login">Log In</button>
+      <button *ngIf="!isLoggedIn()" class="btn btn-primary" routerLink="/signup">Sign Up</button>
+
+      <div *ngIf="isLoggedIn()">
+        <span>Welcome, {{ name }} 👋</span>
+        <button class="btn btn-primary" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
